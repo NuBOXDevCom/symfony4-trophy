@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="row">
+        <div class="col-8">
+            <h1>Comments</h1>
+            {% for comment in comments %}
+                <p>
+                    <strong>{{ comment.user.username }}</strong><br>
+                    {{ comment.content }}
+                </p>
+            {% endfor %}
+            <h1>Add a comment</h1>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button type="submit" role="button" class="btn btn-primary">Comment</button>
+            {{ form_end(form) }}
+        </div>
+        <div class="col-4">
+            <h2>My trophies</h2>
+            {% if trophies is empty %}
+                You don't have trophy unlocked :(
+            {% else %}
+                <ul class="list-group">
+                    {% for trophy in trophies %}
+                        <li class="list-group-item">{{ trophy.name }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
