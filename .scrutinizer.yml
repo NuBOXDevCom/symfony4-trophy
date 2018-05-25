@@ -1,0 +1,30 @@
+build:
+    environment:
+        variables:
+            APP_ENV: 'test'
+            APP_SECRET: '51193adc3e3233fece53f0f87534f760'
+            DATABASE_URL: 'sqlite:///%kernel.project_dir%/var/data.db'
+            MAILER_URL: 'null://localhost'
+    project_setup:
+        before:
+            - mv ./.env.test ./.env
+    nodes:
+        analysis:
+            project_setup:
+                override:
+                    - 'true'
+            tests:
+                override:
+                    - php-scrutinizer-run
+                    -
+                        command: phpcs-run
+                        use_website_config: true
+        tests: true
+filter:
+    excluded_paths:
+        - 'tests/*'
+        - 'bin/*'
+checks:
+    php: true
+coding_style:
+    php: {  }
