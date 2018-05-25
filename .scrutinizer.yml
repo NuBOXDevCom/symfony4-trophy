@@ -7,7 +7,7 @@ build:
             MAILER_URL: 'null://localhost'
     project_setup:
         before:
-            - mv ./.env.test ./.env
+            - cp .env.test .env
     nodes:
         analysis:
             project_setup:
